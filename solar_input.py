@@ -2,6 +2,8 @@
 # license: GPLv3
 
 from solar_objects import Star, Planet
+import matplotlib.pyplot as plt
+import os
 
 
 def read_space_objects_data_from_file(input_filename):
@@ -115,6 +117,34 @@ def write_spase_objects_statistic_to_file(spase_objects, time):
                         r = ((obj.x - object.x)**2 +(obj.y - object.y)**2)**0.5
                 v = (obj.Vx**2 + obj.Vy**2)**0.5
                 print(v, r, time, file = st_file)
+
+
+def delite_statistic_file():
+    """удаляет старый файл статистики
+    """
+    if os.path.exists('statistic_of_the_last_launch.txt'):
+        os.remove('statistic_of_the_last_launch.txt')
+
+
+
+def graphics():
+    """функция, рисующая графики по статистике, сохраненной в файл
+    """
+    v = []
+    r = []
+    time = []
+    with open('statistic_of_the_last_launch.txt') as st_file:
+        for line in st_file:
+            if len(line.strip()) == 0 or line[0] == '#':
+                continue  # пустые строки и строки-комментарии пропускаем
+            line = list(map(float, line.strip().split()))
+            v.append(line[0])
+            r.append(line[1])
+            time.append(line[2])
+    plt.plot(time, v)
+    plt.plot(r, v)
+    plt.plot(time, r)
+    plt.show()
                 
 
 

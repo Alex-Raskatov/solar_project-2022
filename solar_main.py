@@ -114,6 +114,8 @@ def main():
     global space
     global start_button
 
+    delite_statistic_file()
+
     print('Modelling started!')
     physical_time = 0
 
@@ -149,6 +151,7 @@ def main():
 
     root.mainloop()
     print('Modelling finished!')
+    graphics()
 
 if __name__ == "__main__":
     main()
