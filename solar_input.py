@@ -19,7 +19,7 @@ def read_space_objects_data_from_file(input_filename):
             if len(line.strip()) == 0 or line[0] == '#':
                 continue  # пустые строки и строки-комментарии пропускаем
             object_type = line.split()[0].lower()
-            if object_type == "star":  # FIXME: do the same for planet
+            if object_type == "star":
                 star = Star()
                 parse_star_parameters(line, star)
                 objects.append(star)
@@ -98,6 +98,18 @@ def write_space_objects_data_to_file(output_filename, space_objects):
             print("%s %d %s %f %f %f %f %f" % (obj.type, obj.R, obj.color, obj.m, obj.x, obj.y, obj.Vx, obj.Vy), file = out_file)
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
+
+def write_spase_objects_statistic_to_file(spase_objects):
+    with open('statistic_of_the_last_launch.txt', 'a') as st_file:
+        for obj in spase_objects:
+            if obj.type != 'star':
+                for object in spase_objects:
+                    if object.type == 'star':
+                        r = ((obj.x - object.x)**2 +(obj.y - object.y)**2)**0.5
+                v = (obj.Vx**2 + obj.Vy**2)**0.5
+                print(obj.type, v, r, file = st_file)
+                
+
 
 if __name__ == "__main__":
     print("This module is not for direct call!")
