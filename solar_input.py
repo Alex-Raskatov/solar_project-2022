@@ -105,7 +105,7 @@ def write_spase_objects_statistic_to_file(spase_objects, time):
     """Сохраняет статистику о планетах в файл.
     Строка имеет формат <скорость> <расстояние до звезды> <физическое время>
     Параметры:
-    **spase_pbjects** - список тел
+    **spase_objects** - список тел
     **time** - физическое время
     """
 
@@ -119,7 +119,7 @@ def write_spase_objects_statistic_to_file(spase_objects, time):
                 print(v, r, time, file = st_file)
 
 
-def delite_statistic_file():
+def delete_statistic_file():
     """удаляет старый файл статистики
     """
     if os.path.exists('statistic_of_the_last_launch.txt'):
