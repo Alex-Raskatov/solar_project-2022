@@ -150,6 +150,9 @@ def graphics():
     sp = plt.subplot(223)
     plt.title(r'Зависимость расстояния до звезды от времени', fontsize=12)
     plt.plot(time, r)
+    sp = plt.subplot(224)
+    plt.title(r'Зависимость времени от времени', fontsize=12)
+    plt.plot(time, time)
     plt.show()
                 
 
