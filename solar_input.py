@@ -99,7 +99,14 @@ def write_space_objects_data_to_file(output_filename, space_objects):
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
 
-def write_spase_objects_statistic_to_file(spase_objects):
+def write_spase_objects_statistic_to_file(spase_objects, time):
+    """Сохраняет статистику о планетах в файл.
+    Строка имеет формат <скорость> <расстояние до звезды> <физическое время>
+    Параметры:
+    **spase_pbjects** - список тел
+    **time** - физическое время
+    """
+
     with open('statistic_of_the_last_launch.txt', 'a') as st_file:
         for obj in spase_objects:
             if obj.type != 'star':
@@ -107,7 +114,7 @@ def write_spase_objects_statistic_to_file(spase_objects):
                     if object.type == 'star':
                         r = ((obj.x - object.x)**2 +(obj.y - object.y)**2)**0.5
                 v = (obj.Vx**2 + obj.Vy**2)**0.5
-                print(obj.type, v, r, file = st_file)
+                print(v, r, time, file = st_file)
                 
 
 
