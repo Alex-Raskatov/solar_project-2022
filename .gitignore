@@ -55,3 +55,5 @@ docs/_build/
 
 # PyBuilder
 target/
+
+statistic_of_the_last_launch.txt
